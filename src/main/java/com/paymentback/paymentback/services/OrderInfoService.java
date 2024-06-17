@@ -94,7 +94,7 @@ public class OrderInfoService {
         order.setStatus(status);
         return orderSumRepository.save(order);
     }
-//
+
     private String formatAmount(BigDecimal amount) {
         DecimalFormat df = new DecimalFormat("#.00");
         df.setGroupingUsed(false);
