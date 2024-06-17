@@ -16,13 +16,13 @@ public class OrderInfoDTO {
     private String city;
     private String country;
     private String merchantId;
-    private String merchantSecret;
     private String formattedAmount;
     private String hash;
     private String status;
     private String event_id;
+    private String user_id;
 
-    public OrderInfoDTO(String order_id, BigDecimal amount, String currency, String NIC, String first_name, String last_name, String email, String phone, String address, String city, String country, String merchantId, String merchantSecret, String formattedAmount, String hash, String status, String event_id) {
+    public OrderInfoDTO(String order_id, BigDecimal amount, String currency, String NIC, String first_name, String last_name, String email, String phone, String address, String city, String country, String merchantId, String user_id, String formattedAmount, String hash, String status, String event_id) {
         this.order_id = order_id;
         this.amount = amount;
         this.currency = currency;
@@ -35,11 +35,11 @@ public class OrderInfoDTO {
         this.city = city;
         this.country = country;
         this.merchantId = merchantId;
-        this.merchantSecret = merchantSecret;
         this.formattedAmount = formattedAmount;
         this.hash = hash;
         this.status = status;
         this.event_id = event_id;
+        this.user_id = user_id;
     }
 
     public String getOrder_id() {
@@ -138,14 +138,6 @@ public class OrderInfoDTO {
         this.merchantId = merchantId;
     }
 
-    public String getMerchantSecret() {
-        return merchantSecret;
-    }
-
-    public void setMerchantSecret(String merchantSecret) {
-        this.merchantSecret = merchantSecret;
-    }
-
     public String getFormattedAmount() {
         return formattedAmount;
     }
@@ -179,4 +171,11 @@ public class OrderInfoDTO {
     }
 
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
 }

@@ -25,6 +25,7 @@ public class OrderSumEntity {
     private String city;
     private String country;
     private String status;
+    private String user_id;
 
     @OneToMany(mappedBy = "orderSumEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TicketType> ticketTypes;
@@ -140,5 +141,14 @@ public class OrderSumEntity {
 
     public void setEvent_id(String event_id) {
         this.event_id = event_id;
+    }
+
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

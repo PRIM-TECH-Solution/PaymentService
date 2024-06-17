@@ -1,7 +1,6 @@
 package com.paymentback.paymentback.Controller;
 
 import com.paymentback.paymentback.Entity.OrderSumEntity;
-import com.paymentback.paymentback.Entity.TicketType;
 import com.paymentback.paymentback.OrderDTO.OrderInfoDTO;
 import com.paymentback.paymentback.services.OrderInfoService;
 import org.springframework.http.HttpStatus;
@@ -52,6 +51,7 @@ public class OrderSumController {
         order.setCountry((String) payload.get("country"));
         order.setStatus((String) payload.get("status"));
         order.setEvent_id((String) payload.get("event_id"));
+        order.setUser_id((String) payload.get("user_id"));
 
         // Extract the ticket types from the payload
         List<String> ticketTypes = (List<String>) payload.get("ticketTypes");

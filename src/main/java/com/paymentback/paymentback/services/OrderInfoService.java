@@ -57,7 +57,7 @@ public class OrderInfoService {
                     String amountFormatted = df.format(order.getAmount());
                     String hash = getMd5(merchantId + orderID + amountFormatted + currency + getMd5(merchantSecretPay));
 
-                    return new OrderInfoDTO(order.getOrder_id(), order.getAmount(), order.getCurrency(), order.getNIC(), order.getFirst_name(), order.getLast_name(), order.getEmail(), order.getPhone(), order.getAddress(), order.getCity(), order.getCountry(), merchantId, merchantSecretPay, formatAmount(order.getAmount()), hash, order.getStatus(), order.getEvent_id());
+                    return new OrderInfoDTO(order.getOrder_id(), order.getAmount(), order.getCurrency(), order.getNIC(), order.getFirst_name(), order.getLast_name(), order.getEmail(), order.getPhone(), order.getAddress(), order.getCity(), order.getCountry(), merchantId, order.getUser_id(), formatAmount(order.getAmount()), hash, order.getStatus(), order.getEvent_id());
                 })
                 .collect(Collectors.toList());
     }
@@ -72,7 +72,7 @@ public class OrderInfoService {
             String amountFormatted = df.format(order.getAmount());
             String hash = getMd5(merchantId + orderID + amountFormatted + currency + getMd5(merchantSecretPay));
 
-            return new OrderInfoDTO(order.getOrder_id(), order.getAmount(), order.getCurrency(), order.getNIC(), order.getFirst_name(), order.getLast_name(), order.getEmail(), order.getPhone(), order.getAddress(), order.getCity(), order.getCountry(), merchantId, merchantSecretPay, formatAmount(order.getAmount()), hash, order.getStatus(), order.getEvent_id());
+            return new OrderInfoDTO(order.getOrder_id(), order.getAmount(), order.getCurrency(), order.getNIC(), order.getFirst_name(), order.getLast_name(), order.getEmail(), order.getPhone(), order.getAddress(), order.getCity(), order.getCountry(), merchantId, order.getUser_id(), formatAmount(order.getAmount()), hash, order.getStatus(), order.getEvent_id());
         } else {
             throw new RuntimeException("Order not found with id: " + id);
         }
