@@ -22,6 +22,17 @@ public class OrderSumController {
         this.orderInfoService = orderInfoService;
     }
 
+    @GetMapping("/user-id/{orderId}")
+    public ResponseEntity<String> getUserIdByOrderId(@PathVariable String orderId) {
+        OrderSumEntity order = orderInfoService.getOrderEntityById(orderId);
+        if (order != null) {
+            return ResponseEntity.ok(order.getUser_id());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Order not found with id: " + orderId);
+        }
+    }
+
     @GetMapping("/all")
     public List<OrderInfoDTO> getAllOrders() {
         return orderInfoService.getAllOrders();
