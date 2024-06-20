@@ -92,13 +92,38 @@ public class OrderSumController {
         }
     }
 
-    @PutMapping("/update-status/{orderId}")
-    public ResponseEntity<OrderSumEntity> updateOrderStatus(
-            @PathVariable String orderId,
-            @RequestBody Map<String, String> statusRequest) {
-        String status = statusRequest.get("status");
+//    @PutMapping("/update-status/{orderId}")
+//    public ResponseEntity<OrderSumEntity> updateOrderStatus(
+//            @PathVariable String orderId,
+//            @RequestBody Map<String, String> statusRequest) {
+//        String status = statusRequest.get("status");
+//        OrderSumEntity updatedOrder = orderInfoService.updateOrderStatus(orderId, status);
+//        return ResponseEntity.ok(updatedOrder);
+//    }
+
+    @PostMapping("/notify")
+    public ResponseEntity<String> handlePayHereNotification(@RequestParam Map<String, String> params) {
+        // Extract necessary parameters
+        String merchantId = params.get("merchant_id");
+        String orderId = params.get("order_id");
+        String paymentId = params.get("payment_id");
+        String statusCode = params.get("status_code");
+
+        // Determine status based on statusCode
+        String status = switch (statusCode) {
+            case "2" -> "successful";
+            case "0" -> "pending";
+            case "-1" -> "cancelled";
+            case "-2" -> "failed";
+            case "-3" -> "chargeback";
+            default -> "unknown";
+        };
+
+        // Update the order status in the database
         OrderSumEntity updatedOrder = orderInfoService.updateOrderStatus(orderId, status);
-        return ResponseEntity.ok(updatedOrder);
+
+        // Return response
+        return ResponseEntity.ok(updatedOrder+"Payment status updated successfully");
     }
 
     @GetMapping("/ticket-types/{orderId}")
